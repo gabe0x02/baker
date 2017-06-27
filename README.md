@@ -4,7 +4,7 @@ Baker lets you easily add a command line interface to your node scripts that is 
 
 # Usage
 example.js
-```
+```javascript
 let baker = require('./baker');
 function run(a, b, c) {
      console.log("Run", a, b, c);
@@ -59,7 +59,7 @@ baker.command(func, options)
 @param String options.args Name of parameter to recieve an array of unmatched positional command line args.
 ```                    
 
-# CO itergration
+# CO integration
 Baker also supports co generator flow control. (https://github.com/tj/co)  Simply pass in a generator and write some synchronous looking code..
 
 generator_example.js
