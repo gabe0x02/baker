@@ -21,6 +21,7 @@ if (require.main === module) {
 }
 ```
 
+output
 ```
 $ node example.js --help
 Usage: /Users/gabriellittman/Development/baker-js/example.js COMMAND <options>
@@ -57,7 +58,43 @@ baker.command(func, options)
 @param String options.opts Name of parameter to recieve object with all unmatche named commandline args.
 @param String options.args Name of parameter to recieve an array of unmatched positional command line args.
 ```                    
-                      
+
+# CO itergration
+Baker also supports co generator flow control. (https://github.com/tj/co)  Simply pass in a generator and write some synchronous looking code..
+
+generator_example.js
+```javascript
+let baker = require('./baker');
+let request = require('request-promise');
+
+function *run() {
+  let start = new Date();
+  console.log("Start");
+  let body = yield request('https://github.com/gabe0x02/baker-js');
+  console.log("End")
+  console.log("Length:", body.length, "chars");
+  console.log("Duration:", new Date()-start, "ms"); 
+  
+  return body.trim().substring(0, 15) + '...';
+}
+
+if (require.main === module) {
+    baker.command(run, {default: true}  );
+    baker.run();
+}
+```
+
+output
+```
+$ node generator_example.js 
+Start
+End
+Length: 48018 chars
+Duration: 2019 ms
+<!DOCTYPE html>...
+```
+
+
 
 # Tests                
 Still needed...
