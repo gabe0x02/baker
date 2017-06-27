@@ -1,0 +1,32 @@
+{
+  "name": "baker-js",
+  "version": "1.0.0",
+  "description": "Baker lets you easily add a command line interface to your node scripts.",
+  "main": "baker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabe0x02/baker-js.git"
+  },
+  "keywords": [
+    "command",
+    "line",
+    "node",
+    "baker",
+    "options",
+    "parser"
+  ],
+  "author": "gabe0x02@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gabe0x02/baker-js/issues"
+  },
+  "homepage": "https://github.com/gabe0x02/baker-js#readme",
+  "dependencies": {
+    "co": "^4.6.0",
+    "minimist": "^1.2.0",
+    "underscore": "^1.8.3"
+  }
+}
