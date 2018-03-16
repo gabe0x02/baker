@@ -31,7 +31,9 @@ Usage: basic.js COMMAND <options>
 Available commands: 
     test
     run
-Gabriels-MBP:baker-js gabriellittman$ node examples/basic.js run --help
+```
+```
+$ node examples/basic.js run --help
 Usage: basic.js, run a <b> <c>
 
 Required Arguments:
@@ -39,8 +41,8 @@ Required Arguments:
 Options:
   --b
   --c
-
-
+```
+```
 $ node examples/basic.js run 1 2 3
 Run 1 2 3
 
