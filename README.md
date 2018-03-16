@@ -4,7 +4,7 @@ Baker lets you easily add a command line interface to your node scripts. It is i
 
 # Usage
 examples/basic.js
-```
+```javascript
 const baker = require('../index');
 
 function run(a, b, c) {
