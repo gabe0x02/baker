@@ -4,7 +4,9 @@
   "description": "Baker lets you easily add a command line interface to your node scripts.",
   "main": "baker.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint -c .eslintrc.json --ignore-path .eslintignore .",
+    "test": "jest",
+    "cover": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -30,7 +32,21 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "eslint": "3.19.0",
+    "eslint-config-airbnb": "14.1.0",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jest": "^21.15.0",
+    "eslint-plugin-jsx-a11y": "4.0.0",
+    "eslint-plugin-mocha": "4.9.0",
+    "eslint-plugin-react": "6.10.3",
+    "fs-promise": "^2.0.3",
+    "jest": "^23.0.0-alpha.0",
     "request": "^2.81.0",
-    "request-promise": "^4.2.1"
+    "request-promise": "^4.2.2"
+  },
+  "jest": {
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?)$",
+    "silent": true,
+    "testEnvironment": "node"
   }
 }

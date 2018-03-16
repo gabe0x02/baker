@@ -1,49 +1,50 @@
 # baker
-Baker lets you easily add a command line interface to your node scripts that is inspired by python baker library (https://pypi.python.org/pypi/Baker/1.3)
+Baker lets you easily add a command line interface to your node scripts. It is inspired by python baker library (https://pypi.python.org/pypi/Baker/1.3)
 
 
 # Usage
-example.js
+examples/basic.js
 ```
-let baker = require('./baker');
+const baker = require('../index');
+
 function run(a, b, c) {
-     console.log("Run", a, b, c);
+  console.log("Run", a, b, c);
 }
+
 function tester(a, rest, options) {
-     console.log("Test", a, rest, options);
+  console.log("Test", a, rest, options);
 }
 
 
 if (require.main === module) {
-    baker.command(tester, {command: "test", args: "rest", opts: "options"});
-    baker.command(run, {default: true, required: ["a"]});
-    baker.run();
+  baker.command(tester, { command: "test", args: "rest", opts: "options" });
+  baker.command(run, { default: true, required: ["a"] });
+
+  baker.run();
 }
 ```
 
 output
 ```
-$ node example.js --help
-Usage: /Users/gabriellittman/Development/baker-js/example.js COMMAND <options>
+$ node examples/basic.js --help
+Usage: basic.js COMMAND <options>
 Available commands: 
     test
     run
+Gabriels-MBP:baker-js gabriellittman$ node examples/basic.js run --help
+Usage: basic.js, run a <b> <c>
 
-$ node example.js run --help
-Usage: /Users/gabriellittman/Development/baker-js/example.js run a <b> <c>
 Required Arguments:
-
-   a
-
+  a
 Options:
+  --b
+  --c
 
-   --b
-   --c
 
-$ node example.js run 1 2 3
+$ node examples/basic.js run 1 2 3
 Run 1 2 3
 
-$ node example.js test 1 2 3 4 --five 5 --six 6 7
+$ node examples/basic.js test 1 2 3 4 --five 5 --six 6 7
 Test 1 [ 2, 3, 4, 7 ] { five: 5, six: 6 }
 ```
 
@@ -59,42 +60,66 @@ baker.command(func, options)
 @param String options.args Name of parameter to recieve an array of unmatched positional command line args.
 ```                    
 
-# CO itergration
-Baker also supports co generator flow control. (https://github.com/tj/co)  Simply pass in a generator and write some synchronous looking code..
-
-generator_example.js
+# Promises 
+When a promise is returned by the command function baker will wait till the promise is resolved and return the result of the promise 
 ```javascript
-let baker = require('./baker');
-let request = require('request-promise');
+const baker = require('../index');
+const request = require('request-promise');
 
-function *run() {
-  let start = new Date();
-  console.log("Start");
-  let body = yield request('https://github.com/gabe0x02/baker-js');
-  console.log("End")
-  console.log("Length:", body.length, "chars");
-  console.log("Duration:", new Date()-start, "ms"); 
-  
-  return body.trim().substring(0, 15) + '...';
+function run() {
+  return request('https://github.com/gabe0x02/baker-js').then((body) => {
+    return `${body.trim().substring(0, 15)}...`;
+  });
 }
 
 if (require.main === module) {
-    baker.command(run, {default: true}  );
-    baker.run();
+  baker.command(run, { default: true });
+  baker.run();
 }
 ```
 
 output
 ```
-$ node generator_example.js 
+$ node examples/promise.js 
+<!DOCTYPE html>...
+```
+
+# Generators
+Baker also supports co generator flow control. (https://github.com/tj/co)  Simply pass in a generator and write some synchronous looking code..
+
+generator_example.js
+```javascript
+const baker = require('../index');
+const request = require('request-promise');
+
+function *run() {
+  const start = new Date();
+  console.log("Start");
+  const body = yield request('https://github.com/gabe0x02/baker-js');
+  console.log("End");
+  console.log("Length:", body.length, "chars");
+  console.log("Duration:", new Date() - start, "ms");
+
+  return `${body.trim().substring(0, 15)}...`;
+}
+
+if (require.main === module) {
+  baker.command(run, { default: true });
+  baker.run();
+}
+```
+
+output
+```
+$ node examples/generator.js 
 Start
 End
-Length: 48018 chars
-Duration: 2019 ms
+Length: 56287 chars
+Duration: 744 ms
 <!DOCTYPE html>...
 ```
 
 
-
-# Tests                
-Still needed...
+# TODO
+* More testing in could be useful.
+* Better usage output

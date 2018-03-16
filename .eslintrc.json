@@ -1,0 +1,54 @@
+{
+    "env": {
+        "es6": true,
+        "node": true,
+        "jest/globals": true
+    },
+    "extends": "airbnb",
+    "plugins": ["jest"],
+    "rules": {
+        "no-use-before-define": "off",
+        "react/jsx-uses-vars": ["error"],
+        "jsx-a11y/no-static-element-interactions": "off",
+        "comma-dangle": "off",
+        "no-console": "off",
+        "object-shorthand": "off",
+        "quotes": "off",
+        "react/jsx-curly-spacing": ["error", "always"],
+        "keyword-spacing": ["warn"],
+        "react/forbid-prop-types": "off",
+        "no-param-reassign": "off",
+        "generator-star-spacing": ["error", {"before": true, "after": false}],
+        "max-len": ["error", 120],
+        "no-trailing-spaces": ["warn"],
+        "no-plusplus": "off",
+        "camelcase": "off",
+        "arrow-body-style": "off",
+        "indent": [
+            "error",
+            2
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "no-restricted-properties": ["error", {
+                "object": "arguments",
+                "property": "callee",
+                "message": "arguments.callee is deprecated"
+            }, 
+            {
+                "property": "__defineGetter__",
+                "message": "Please use Object.defineProperty instead."
+            }, 
+            {
+                "property": "__defineSetter__",
+                "message": "Please use Object.defineProperty instead."
+            }
+        ],
+        "semi": [
+            "error",
+            "always"
+        ]
+    }
+}
