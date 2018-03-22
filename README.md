@@ -1,11 +1,15 @@
 # baker
 Baker lets you easily add a command line interface to your node scripts. It is inspired by python baker library (https://pypi.python.org/pypi/Baker/1.3)
 
+# Install
+```
+npm install baker-js
+```
 
 # Usage
 examples/basic.js
 ```javascript
-const baker = require('../index');
+const baker = require('baker-js');
 
 function run(a, b, c) {
   console.log("Run", a, b, c);
@@ -65,7 +69,7 @@ baker.command(func, options)
 # Promises 
 When a promise is returned by the command function baker will wait till the promise is resolved and return the result of the promise 
 ```javascript
-const baker = require('../index');
+const baker = require('baker-js');
 const request = require('request-promise');
 
 function run() {
@@ -91,7 +95,7 @@ Baker also supports co generator flow control. (https://github.com/tj/co)  Simpl
 
 generator_example.js
 ```javascript
-const baker = require('../index');
+const baker = require('baker-js');
 const request = require('request-promise');
 
 function *run() {
@@ -125,3 +129,6 @@ Duration: 744 ms
 # TODO
 * More testing in could be useful.
 * Better usage output
+* Allow argument descriptions in usage
+* Better documentation of options. args, opts, default, etc
+* post to npm
